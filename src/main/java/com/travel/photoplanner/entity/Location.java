@@ -90,6 +90,7 @@ public class Location {
         this.picture = picture;
     }
 
+
     public String toString(){
         StringBuilder builder = new StringBuilder();
         builder.append(this.name);

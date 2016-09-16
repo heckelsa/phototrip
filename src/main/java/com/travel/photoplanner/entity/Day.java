@@ -2,6 +2,7 @@ package com.travel.photoplanner.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table
@@ -15,14 +16,18 @@ public class Day {
     @Column(name = "Date")
     private Date date;
 
+    @OneToMany
+    @JoinColumn(name = "Locations")
+    private Set<Location> locationSet;
+
     public Day(){
 
     }
 
-    public Day(Date date) {
+    public Day(Date date, Set<Location> locationSet) {
         this.date = date;
+        this.locationSet = locationSet;
     }
-
 
     /**********************
      * GETTER AND SETTERS
@@ -43,6 +48,14 @@ public class Day {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Set<Location> getLocationSet() {
+        return locationSet;
+    }
+
+    public void setLocationSet(Set<Location> locationSet) {
+        this.locationSet = locationSet;
     }
 }
 
