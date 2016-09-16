@@ -81,5 +81,16 @@ public class Trip {
     public void setDaySet(Set<Day> daySet) {
         this.daySet = daySet;
     }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                       "id=" + id +
+                       ", country='" + country + '\'' +
+                       ", startDate=" + startDate +
+                       ", endDate=" + endDate +
+                       ", daySet=" + daySet +
+                       '}';
+    }
 }
 

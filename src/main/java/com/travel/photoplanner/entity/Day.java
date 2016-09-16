@@ -57,5 +57,14 @@ public class Day {
     public void setLocationSet(Set<Location> locationSet) {
         this.locationSet = locationSet;
     }
+
+    @Override
+    public String toString() {
+        return "Day{" +
+                       "id=" + id +
+                       ", date=" + date +
+                       ", locationSet=" + locationSet +
+                       '}';
+    }
 }
 

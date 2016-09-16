@@ -90,18 +90,15 @@ public class Location {
         this.picture = picture;
     }
 
-
-    public String toString(){
-        StringBuilder builder = new StringBuilder();
-        builder.append(this.name);
-        builder.append(", ");
-        builder.append(this.description);
-        builder.append(", ");
-        builder.append(this.coordinates);
-        builder.append(", ");
-        builder.append(this.priority);
-        builder.append(", ");
-        builder.append(this.picture);
-        return builder.toString();
+    @Override
+    public String toString() {
+        return "Location{" +
+                       "id=" + id +
+                       ", name='" + name + '\'' +
+                       ", description='" + description + '\'' +
+                       ", coordinates='" + coordinates + '\'' +
+                       ", priority=" + priority +
+                       ", picture='" + picture + '\'' +
+                       '}';
     }
 }
