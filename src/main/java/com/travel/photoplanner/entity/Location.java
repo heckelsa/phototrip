@@ -1,4 +1,4 @@
-package com.travel.photoplanner;
+package com.travel.photoplanner.entity;
 
 import javax.persistence.*;
 

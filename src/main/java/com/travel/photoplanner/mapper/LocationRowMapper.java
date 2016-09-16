@@ -1,5 +1,6 @@
-package com.travel.photoplanner;
+package com.travel.photoplanner.mapper;
 
+import com.travel.photoplanner.entity.Location;
 import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;

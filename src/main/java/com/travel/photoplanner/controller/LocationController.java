@@ -1,7 +1,8 @@
-package com.travel.photoplanner;
+package com.travel.photoplanner.controller;
 
+import com.travel.photoplanner.entity.Location;
+import com.travel.photoplanner.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
