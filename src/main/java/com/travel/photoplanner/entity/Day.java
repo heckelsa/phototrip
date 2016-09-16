@@ -15,6 +15,10 @@ public class Day {
     @Column(name = "Date")
     private Date date;
 
+    public Day(){
+
+    }
+
     public Day(Date date) {
         this.date = date;
     }

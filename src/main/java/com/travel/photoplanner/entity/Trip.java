@@ -21,6 +21,9 @@ public class Trip {
     @Column(name = "EndDate")
     private Date endDate;
 
+    public Trip(){
+    }
+
     public Trip(String country, Date startDate, Date endDate) {
         this.country = country;
         this.startDate = startDate;
