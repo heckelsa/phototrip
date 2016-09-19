@@ -7,15 +7,18 @@ import com.travel.photoplanner.repository.DayRepository;
 import com.travel.photoplanner.repository.LocationRepository;
 import com.travel.photoplanner.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.Set;
 
-@RestController
+@Controller
 public class TripController {
 
     Set<Location> locationSet;
@@ -30,11 +33,17 @@ public class TripController {
     @Autowired
     private LocationRepository locationRepository;
 
-    @RequestMapping("/")
-    public Iterable<Trip> showAllTrips(){
+    @RequestMapping("/greeting")
+    public ModelAndView index(ModelAndView modelAndView){
 
-        Iterable<Trip> trips = tripRepository.findAll();
-        return trips;
+        modelAndView.setViewName("greeting");
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/")
+    public String index(){
+        return "index";
     }
 
 
