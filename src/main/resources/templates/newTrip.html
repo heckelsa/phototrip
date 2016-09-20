@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Create a new Trip</title>
+
+  <style type="text/css">
+    .inputField {
+      width: 100%;
+    }
+    .inputLabel {
+      width: 200px;
+    }
+    .headline {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <form action="createTrip" method="POST">
+
+    <div class="headline">
+      <h1>General Information</h1>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Land:</div>
+      <div class="inputValue">
+        <input type="text" name="country" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Startdate:</div>
+      <div class="inputValue">
+        <input type="date" name="startdate" placeholder="02-11-2016" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Enddate:</div>
+      <div class="inputValue">
+        <input type="date" name="enddate" placeholder="15-11-2016" />
+      </div>
+    </div>
+
+    <button type="submit" value="Speichern" name="Submit">Speichern</button>
+
+  </form>
+</div>
+
+</body>
+</html>

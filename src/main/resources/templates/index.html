@@ -7,10 +7,14 @@
 <body>
     <div><h1>Phototrip Planner</h1></div>
 
-  <!--<div th:each="trip : ${trips}">
-    ${trip.country}
+    <div><h2>Overview</h2></div>
+
+  <div th:each="trip : ${trips}">
+      <a th:href="'detail?id=' + ${trip.id}">
+          <b><span th:text="${trip.country}" ></span></b>
+          <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
+      </a>
   </div>
--->
 
 </body>
 </html>

@@ -1,6 +1,9 @@
 package com.travel.photoplanner.entity;
 
+import com.travel.photoplanner.helper.PhototripHelper;
+
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Set;
 
@@ -28,6 +31,12 @@ public class Trip {
 
 
     public Trip(){
+    }
+
+    public Trip(String country, Date startDate, Date endDate) {
+        this.country = country;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public Trip(String country, Date startDate, Date endDate, Set<Day> daySet) {
@@ -80,6 +89,42 @@ public class Trip {
 
     public void setDaySet(Set<Day> daySet) {
         this.daySet = daySet;
+    }
+
+    public String getFormattedStartDate() throws ParseException {
+        String formattedDate = PhototripHelper.getFormattedDate(startDate);
+        return formattedDate;
+    }
+
+    public String getFormattedEndDate() throws ParseException {
+        String formattedDate = PhototripHelper.getFormattedDate(endDate);
+        return formattedDate;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Trip trip = (Trip) o;
+
+        if (id != trip.id) return false;
+        if (!country.equals(trip.country)) return false;
+        if (!startDate.equals(trip.startDate)) return false;
+        if (!endDate.equals(trip.endDate)) return false;
+        return daySet != null ? daySet.equals(trip.daySet) : trip.daySet == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + country.hashCode();
+        result = 31 * result + startDate.hashCode();
+        result = 31 * result + endDate.hashCode();
+        result = 31 * result + (daySet != null ? daySet.hashCode() : 0);
+        return result;
     }
 
     @Override

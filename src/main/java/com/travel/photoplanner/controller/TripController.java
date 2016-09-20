@@ -3,6 +3,7 @@ package com.travel.photoplanner.controller;
 import com.travel.photoplanner.entity.Day;
 import com.travel.photoplanner.entity.Location;
 import com.travel.photoplanner.entity.Trip;
+import com.travel.photoplanner.helper.PhototripHelper;
 import com.travel.photoplanner.repository.DayRepository;
 import com.travel.photoplanner.repository.LocationRepository;
 import com.travel.photoplanner.repository.TripRepository;
@@ -12,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Set;
 
@@ -33,52 +34,74 @@ public class TripController {
     @Autowired
     private LocationRepository locationRepository;
 
-    @RequestMapping("/greeting")
+
+    @RequestMapping("/")
     public ModelAndView index(ModelAndView modelAndView){
 
-        modelAndView.setViewName("greeting");
+        modelAndView.addObject("trips", tripRepository.findAll());
+        modelAndView.setViewName("index");
 
         return modelAndView;
     }
 
-    @RequestMapping("/")
-    public String index(){
+
+    @RequestMapping("/newTrip")
+    public String newTrip() {
+        return "newTrip";
+    }
+
+
+    @RequestMapping("/createTrip")
+    public String newTrip(@RequestParam(value = "country") String country,
+                          @RequestParam(value = "startdate") String startDate,
+                          @RequestParam(value = "enddate") String endDate) throws ParseException {
+
+        Date startDateParsed = PhototripHelper.parseStringToDate(startDate);
+        Date endDateParsed = PhototripHelper.parseStringToDate(endDate);
+
+        Trip trip = new Trip(country, startDateParsed, endDateParsed);
+
+        tripRepository.save(trip);
+
         return "index";
     }
 
 
-    @RequestMapping("/create")
-    public
-    @ResponseBody
-    String createTrip(@RequestParam(value = "name") String name,
-                      @RequestParam(value = "description") String description,
-                      @RequestParam(value = "coordinates") String coordinates,
-                      @RequestParam(value = "priority") int priority,
-                      @RequestParam(value = "picture") String picture,
-                      @RequestParam(value = "date") Date date,
-                      @RequestParam(value = "country") String country,
-                      @RequestParam(value = "startDate") Date startDate,
-                      @RequestParam(value = "endDate") Date endDate){
+    @RequestMapping("/createLocation")
+    public String createLocation(@RequestParam(value = "id") int id,
+                                 @RequestParam(value = "name") String name,
+                                 @RequestParam(value = "description") String description,
+                                 @RequestParam(value = "coordinates") String coordinates,
+                                 @RequestParam(value = "priority") int priority,
+                                 @RequestParam(value = "picture", required = false) String picture,
+                                 @RequestParam(value = "date") String date) throws ParseException {
 
-        Location location = new Location(name, description, coordinates, priority, picture);
+        Date locationDateDay = PhototripHelper.parseStringToDate(date);
+
+        Location location = locationRepository.save(new Location(name, description, coordinates, priority, picture));
 
         locationSet.add(location);
 
-        Day day = new Day(date, locationSet);
+        Day day = dayRepository.save(new Day(locationDateDay, locationSet));
 
+        Trip trip = tripRepository.findById(id);
+
+        daySet = trip.getDaySet();
         daySet.add(day);
 
-        Trip trip = new Trip(country, startDate, endDate, daySet);
+        tripRepository.save(trip);
 
-        trip = tripRepository.save(trip);
-
-        return trip.toString();
+        return "detail";
     }
 
-    @RequestMapping("/detail")
-    public String showDetail(@RequestParam(value = "id") int id){
 
-        return "Detail";
+    @RequestMapping("/detail")
+    public ModelAndView detail(@RequestParam(value = "id") int id, ModelAndView modelAndView){
+
+        modelAndView.addObject("trip", tripRepository.findById(id));
+        modelAndView.setViewName("detail");
+
+        return modelAndView;
     }
 
 }

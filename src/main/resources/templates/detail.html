@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1 th:text="${trip.country}"></h1>
+
+<div>
+  <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
+</div>
+
+<div>
+
+  <h2>New Location</h2>
+
+  <form th:action="'createLocation?id=' + ${trip.id}" method="POST">
+
+    <div class="inputField">
+      <div class="inputLabel">Datum:</div>
+      <div class="inputValue">
+        <input type="date" name="date" placeholder="05-10-2016" />
+      </div>
+    </div>
+
+
+    <div class="inputField">
+      <div class="inputLabel">Location Name:</div>
+      <div class="inputValue">
+        <input type="text" name="name" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Description:</div>
+      <div class="inputValue">
+        <input type="text" name="description" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Coordinates:</div>
+      <div class="inputValue">
+        <input type="text" name="coordinates" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Priority:</div>
+      <div class="inputValue">
+        <input type="text" name="priority" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Priority:</div>
+      <div class="inputValue">
+        <input name="Datei" type="file" size="50" accept="image/jpeg" />
+      </div>
+    </div>
+
+    <div class="buttonField">
+      <div><button type="submit" value="submit" name="submit">New Location</button> </div>
+    </div>
+
+  </form>
+</div>
+
+</body>
+</html>
