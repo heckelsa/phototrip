@@ -9,22 +9,19 @@ import com.travel.photoplanner.repository.LocationRepository;
 import com.travel.photoplanner.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 @Controller
 public class TripController {
 
-    Set<Day> daySet;
+    private Set<Day> daySet;
 
     @Autowired
     private TripRepository tripRepository;
@@ -100,6 +97,7 @@ public class TripController {
         modelAndView.setViewName("detail");
 
         return modelAndView;
+
     }
 
 

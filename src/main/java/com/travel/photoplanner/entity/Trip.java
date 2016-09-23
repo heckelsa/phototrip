@@ -25,7 +25,7 @@ public class Trip {
     @Column(name = "EndDate")
     private Date endDate;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "DayTrip")
     private Set<Day> daySet;
 

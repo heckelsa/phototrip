@@ -10,7 +10,12 @@
   <h1 th:text="${trip.country}"></h1>
 </span>
 
-
+<div th:each="day : ${trip.daySet}">
+    <span th:text="'Day:' + ${day.date}" />
+    <div th:each="location : ${day.locationSet}">
+      <span th:text="'Location:' + ${location.name}" />
+    </div>
+</div>
 
 
 <div>

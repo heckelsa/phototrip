@@ -16,7 +16,7 @@ public class Day {
     @Column(name = "Date")
     private Date date;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "Locations")
     private Set<Location> locationSet;
 
