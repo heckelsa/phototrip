@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${day.formattedDate}"></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<body>
+
+<h1 th:text="${day.formattedDate}"></h1>
+
+<div th:each="location : ${day.locationSet}">
+  <a th:href="'location?id=' + ${location.id}">
+    <span th:text="'Day:' + ${location.name}" />
+  </a>
+</div>
+
+</body>
+</html>

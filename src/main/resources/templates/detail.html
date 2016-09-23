@@ -4,7 +4,7 @@
   <title th:text="${trip.country}"></title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
   <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
@@ -32,10 +32,15 @@
 </span>
 
 <div th:each="day : ${trip.daySet}">
+  <a th:href="'day?id=' + ${day.id}">
     <span th:text="'Day:' + ${day.formattedDate}" />
+  </a>
+    <ul id="sortable">
     <div th:each="location : ${day.locationSet}">
-      <span th:text="'Location:' + ${location.name}" />
+        <li class="ui-state-default">
+          <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><span th:text="${location.name}" /></li>
     </div>
+    </ul>
 </div>
 
 

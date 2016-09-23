@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${day.formattedDate}"></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<body>
+
+<h1 th:text="'Edit' + ${day.formattedDate}"></h1>
+
+<form th:action="'editDay?id=' + ${day.id}" method="POST">
+
+  <div th:each="location : ${day.locationSet}">
+    <div class="inputField">
+      <div class="inputLabel" th:text="${location.name}"></div>
+      <div class="inputValue">
+        <input type="date" th:name="'date_' + ${location.id}" name="date" th:placeholder="${day.getFormattedDate()}" />
+      </div>
+    </div>
+  </div>
+
+  <div class="buttonField">
+    <div><button type="submit" value="submit" name="submit">New Location</button> </div>
+  </div>
+
+</form>
+
+</body>
+</html>

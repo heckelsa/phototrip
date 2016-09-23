@@ -75,23 +75,10 @@ public class TripController {
                                  @RequestParam(value = "date") String date,
                                  ModelAndView modelAndView) throws ParseException {
 
-        Date locationDateDay = PhototripHelper.parseStringToDate(date);
-
         Location location = locationRepository.save(new Location(name, description, coordinates, priority, picture));
 
-
-        Set<Location> locationSet = new HashSet<Location>();
-
-        locationSet.add(location);
-
-        Day day = dayRepository.save(new Day(locationDateDay, locationSet));
-
-        Trip trip = tripRepository.findById(id);
-
-        daySet = trip.getDaySet();
-        daySet.add(day);
-
-        tripRepository.save(trip);
+        Day day = saveDay(date, location);
+        Trip trip = saveTrip(id, day);
 
         modelAndView.addObject("trip", trip);
         modelAndView.setViewName("detail");
@@ -100,14 +87,78 @@ public class TripController {
 
     }
 
+    private Trip saveTrip(int id, Day day) {
+        Trip trip = tripRepository.findById(id);
+
+        daySet = trip.getDaySet();
+        daySet.add(day);
+
+        trip = tripRepository.save(trip);
+
+        return trip;
+    }
+
+    private Day saveDay(String date, Location location) throws ParseException {
+        Date locationDateDay = PhototripHelper.parseStringToDate(date);
+
+        Set<Location> locationSet = new HashSet<Location>();
+
+        Day day = dayRepository.findByDate(locationDateDay);
+        if(day  == null){
+            day = new Day(locationDateDay, locationSet);
+        }else{
+            locationSet = day.getLocationSet();
+        }
+
+        locationSet.add(location);
+
+        day = dayRepository.save(day);
+
+        return day;
+    }
+
 
     @RequestMapping("/detail")
-    public ModelAndView detail(@RequestParam(value = "id") int id, ModelAndView modelAndView){
+    public ModelAndView detail(@RequestParam(value = "id") int id,
+                               ModelAndView modelAndView){
 
         modelAndView.addObject("trip", tripRepository.findById(id));
         modelAndView.setViewName("detail");
 
         return modelAndView;
+    }
+
+    @RequestMapping("/day")
+    public ModelAndView day(@RequestParam(value = "id") int id,
+                            ModelAndView modelAndView){
+
+        modelAndView.addObject("day", dayRepository.findById(id));
+        modelAndView.setViewName("day");
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping("/location")
+    public ModelAndView location(@RequestParam(value = "id") int id,
+                                 ModelAndView modelAndView){
+
+        modelAndView.addObject("location", locationRepository.findById(id));
+        modelAndView.setViewName("location");
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/editDay")
+    public ModelAndView editDay(@RequestParam(value = "id") int id,
+                                ModelAndView modelAndView) {
+        /*TODO: Work in Progress*/
+
+        Day day = dayRepository.findById(id);
+
+        modelAndView.setViewName("editDay");
+        return modelAndView;
+
     }
 
 }

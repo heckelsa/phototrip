@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title th:text="${location.name}"></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
+<body>
+
+<span th:if="${location.name}">
+  <h1 th:text="${location.name}"></h1>
+</span>
+
+<div>
+
+  <div th:text="${location.description}" />
+  <div th:text="${location.coordinates}" />
+  <div th:text="${location.priority}" />
+
+</div>
+
+</body>
+</html>
