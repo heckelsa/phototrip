@@ -45,7 +45,7 @@ public class TripController {
 
     @RequestMapping("/newTrip")
     public String newTrip() {
-        return "newTrip";
+        return "new/newTrip";
     }
 
 
@@ -156,7 +156,7 @@ public class TripController {
 
         Day day = dayRepository.findById(id);
 
-        modelAndView.setViewName("editDay");
+        modelAndView.setViewName("edit/editDay");
         return modelAndView;
 
     }
