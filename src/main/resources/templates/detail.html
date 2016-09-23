@@ -6,7 +6,12 @@
 </head>
 <body>
 
-<h1 th:text="${trip.country}"></h1>
+<span th:if="${trip.country}">
+  <h1 th:text="${trip.country}"></h1>
+</span>
+
+
+
 
 <div>
   <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />

@@ -17,12 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 @Controller
 public class TripController {
 
-    Set<Location> locationSet;
     Set<Day> daySet;
 
     @Autowired
@@ -68,17 +69,21 @@ public class TripController {
 
 
     @RequestMapping("/createLocation")
-    public String createLocation(@RequestParam(value = "id") int id,
+    public ModelAndView createLocation(@RequestParam(value = "id") int id,
                                  @RequestParam(value = "name") String name,
                                  @RequestParam(value = "description") String description,
                                  @RequestParam(value = "coordinates") String coordinates,
                                  @RequestParam(value = "priority") int priority,
                                  @RequestParam(value = "picture", required = false) String picture,
-                                 @RequestParam(value = "date") String date) throws ParseException {
+                                 @RequestParam(value = "date") String date,
+                                 ModelAndView modelAndView) throws ParseException {
 
         Date locationDateDay = PhototripHelper.parseStringToDate(date);
 
         Location location = locationRepository.save(new Location(name, description, coordinates, priority, picture));
+
+
+        Set<Location> locationSet = new HashSet<Location>();
 
         locationSet.add(location);
 
@@ -91,7 +96,10 @@ public class TripController {
 
         tripRepository.save(trip);
 
-        return "detail";
+        modelAndView.addObject("trip", trip);
+        modelAndView.setViewName("detail");
+
+        return modelAndView;
     }
 
 
