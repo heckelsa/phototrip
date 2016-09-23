@@ -1,6 +1,9 @@
 package com.travel.photoplanner.entity;
 
+import com.travel.photoplanner.helper.PhototripHelper;
+
 import javax.persistence.*;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Set;
 
@@ -56,6 +59,11 @@ public class Day {
 
     public void setLocationSet(Set<Location> locationSet) {
         this.locationSet = locationSet;
+    }
+
+    public String getFormattedDate() throws ParseException {
+        String formattedDate = PhototripHelper.getFormattedDate(this.date);
+        return formattedDate;
     }
 
     @Override

@@ -92,12 +92,12 @@ public class Trip {
     }
 
     public String getFormattedStartDate() throws ParseException {
-        String formattedDate = PhototripHelper.getFormattedDate(startDate);
+        String formattedDate = PhototripHelper.getFormattedDate(this.startDate);
         return formattedDate;
     }
 
     public String getFormattedEndDate() throws ParseException {
-        String formattedDate = PhototripHelper.getFormattedDate(endDate);
+        String formattedDate = PhototripHelper.getFormattedDate(this.endDate);
         return formattedDate;
     }
 

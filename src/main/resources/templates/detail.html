@@ -11,7 +11,7 @@
 </span>
 
 <div th:each="day : ${trip.daySet}">
-    <span th:text="'Day:' + ${day.date}" />
+    <span th:text="'Day:' + ${day.formattedDate}" />
     <div th:each="location : ${day.locationSet}">
       <span th:text="'Location:' + ${location.name}" />
     </div>
