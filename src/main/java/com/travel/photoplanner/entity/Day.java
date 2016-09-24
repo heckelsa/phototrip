@@ -1,6 +1,6 @@
 package com.travel.photoplanner.entity;
 
-import com.travel.photoplanner.helper.PhototripHelper;
+import com.travel.photoplanner.helper.DateHelper;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -26,6 +26,10 @@ public class Day {
 
     public Day(){
 
+    }
+
+    public Day(Date date){
+        this.date = date;
     }
 
     public Day(Date date, Set<Location> locationSet) {
@@ -69,7 +73,7 @@ public class Day {
 
 
     public String getFormattedDate() throws ParseException {
-        String formattedDate = PhototripHelper.getFormattedDate(this.date);
+        String formattedDate = DateHelper.getFormattedDate(this.date);
         return formattedDate;
     }
 

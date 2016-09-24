@@ -1,18 +1,17 @@
 package com.travel.photoplanner.entity;
 
-import com.travel.photoplanner.helper.PhototripHelper;
+import com.travel.photoplanner.helper.DateHelper;
 
 import javax.persistence.*;
 import java.text.ParseException;
-import java.util.Date;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table
 public class Trip {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private int id;
 
@@ -27,10 +26,10 @@ public class Trip {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "DayTrip")
-    private Set<Day> daySet;
+    private List<Day> dayList;
 
 
-    public Trip(){
+    public Trip() {
     }
 
     public Trip(String country, Date startDate, Date endDate) {
@@ -39,11 +38,11 @@ public class Trip {
         this.endDate = endDate;
     }
 
-    public Trip(String country, Date startDate, Date endDate, Set<Day> daySet) {
+    public Trip(String country, Date startDate, Date endDate, List<Day> dayList) {
         this.country = country;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.daySet = daySet;
+        this.dayList = dayList;
     }
 
     /*********************
@@ -83,23 +82,34 @@ public class Trip {
         this.endDate = endDate;
     }
 
-    public Set<Day> getDaySet() {
-        return daySet;
+    public List<Day> getDayList() {
+        return dayList;
     }
 
-    public void setDaySet(Set<Day> daySet) {
-        this.daySet = daySet;
+    public void setDayList(List<Day> dayList) {
+        this.dayList = dayList;
     }
+
+
+    /**********************
+     * METHODS
+     *********************/
+
 
     public String getFormattedStartDate() throws ParseException {
-        String formattedDate = PhototripHelper.getFormattedDate(this.startDate);
+        String formattedDate = DateHelper.getFormattedDate(this.startDate);
         return formattedDate;
     }
 
     public String getFormattedEndDate() throws ParseException {
-        String formattedDate = PhototripHelper.getFormattedDate(this.endDate);
+        String formattedDate = DateHelper.getFormattedDate(this.endDate);
         return formattedDate;
     }
+
+
+    /****************************
+    * TO STRING / HASH / EQUALS
+    ****************************/
 
 
     @Override
@@ -113,7 +123,7 @@ public class Trip {
         if (!country.equals(trip.country)) return false;
         if (!startDate.equals(trip.startDate)) return false;
         if (!endDate.equals(trip.endDate)) return false;
-        return daySet != null ? daySet.equals(trip.daySet) : trip.daySet == null;
+        return dayList != null ? dayList.equals(trip.dayList) : trip.dayList == null;
 
     }
 
@@ -123,7 +133,7 @@ public class Trip {
         result = 31 * result + country.hashCode();
         result = 31 * result + startDate.hashCode();
         result = 31 * result + endDate.hashCode();
-        result = 31 * result + (daySet != null ? daySet.hashCode() : 0);
+        result = 31 * result + (dayList != null ? dayList.hashCode() : 0);
         return result;
     }
 
@@ -134,7 +144,7 @@ public class Trip {
                        ", country='" + country + '\'' +
                        ", startDate=" + startDate +
                        ", endDate=" + endDate +
-                       ", daySet=" + daySet +
+                       ", dayList=" + dayList +
                        '}';
     }
 }

@@ -10,12 +10,14 @@
 <body>
 
 <!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
+<!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
 
 <span th:if="${trip.country}">
   <h1 th:text="${trip.country}"></h1>
 </span>
 
-<div th:each="day : ${trip.daySet}">
+<div th:each="day : ${trip.dayList}">
   <a th:href="'day?id=' + ${day.id}">
     <span th:text="'Day:' + ${day.formattedDate}" />
   </a>

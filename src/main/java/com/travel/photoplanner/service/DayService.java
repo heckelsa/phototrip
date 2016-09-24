@@ -2,7 +2,7 @@ package com.travel.photoplanner.service;
 
 import com.travel.photoplanner.entity.Day;
 import com.travel.photoplanner.entity.Location;
-import com.travel.photoplanner.helper.PhototripHelper;
+import com.travel.photoplanner.helper.DateHelper;
 import com.travel.photoplanner.repository.DayRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class DayService {
         return dayRepository.findById(id);
     }
 
-    public Day updateDay(Day day){
+    public Day saveDay(Day day){
        return dayRepository.save(day);
     }
 
@@ -42,7 +42,7 @@ public class DayService {
         Set<Location> locationSet = day.getLocationSet();
         locationSet.remove(location);
         day.setLocationSet(locationSet);
-        day = updateDay(day);
+        day = saveDay(day);
         return day;
     }
 
@@ -54,7 +54,7 @@ public class DayService {
      * @throws ParseException
      */
     public Day addLocationToDay(String date, Location location) throws ParseException {
-        Date locationDateDay = PhototripHelper.parseStringToDate(date);
+        Date locationDateDay = DateHelper.parseStringToDate(date);
 
         Set<Location> locationSet = new HashSet<Location>();
 
@@ -67,7 +67,7 @@ public class DayService {
 
         locationSet.add(location);
 
-        day = updateDay(day);
+        day = saveDay(day);
 
         return day;
     }
