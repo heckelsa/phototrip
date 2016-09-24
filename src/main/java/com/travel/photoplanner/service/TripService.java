@@ -31,16 +31,16 @@ public class TripService {
     /**
      *
      * @param country
-     * @param startDate
-     * @param endDate
+     * @param start
+     * @param end
      * @return
      * @throws ParseException
      */
-    public Trip saveNewTrip(String country, String startDate, String endDate) throws ParseException {
-        Date startDateParsed = PhototripHelper.parseStringToDate(startDate);
-        Date endDateParsed = PhototripHelper.parseStringToDate(endDate);
+    public Trip saveNewTrip(String country, String start, String end) throws ParseException {
+        Date startDate = PhototripHelper.parseStringToDate(start);
+        Date endDate = PhototripHelper.parseStringToDate(end);
 
-        Trip trip = new Trip(country, startDateParsed, endDateParsed);
+        Trip trip = new Trip(country, startDate, endDate);
 
         tripRepository.save(trip);
 
