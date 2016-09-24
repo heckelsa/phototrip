@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class DayService {
@@ -39,9 +37,9 @@ public class DayService {
      * @return
      */
     public Day removeLocationFromDay(Day day, Location location){
-        Set<Location> locationSet = day.getLocationSet();
-        locationSet.remove(location);
-        day.setLocationSet(locationSet);
+        List<Location> locationList = day.getLocationList();
+        locationList.remove(location);
+        day.setLocationList(locationList);
         day = saveDay(day);
         return day;
     }
@@ -56,16 +54,16 @@ public class DayService {
     public Day addLocationToDay(String date, Location location) throws ParseException {
         Date locationDateDay = DateHelper.parseStringToDate(date);
 
-        Set<Location> locationSet = new HashSet<Location>();
+        List<Location> locationList = new LinkedList<>();
 
         Day day = findDayByDate(locationDateDay);
         if(day  == null){
-            day = new Day(locationDateDay, locationSet);
+            day = new Day(locationDateDay, locationList);
         }else{
-            locationSet = day.getLocationSet();
+            locationList = day.getLocationList();
         }
 
-        locationSet.add(location);
+        locationList.add(location);
 
         day = saveDay(day);
 

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class Day {
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "Locations")
-    private Set<Location> locationSet;
+    private List<Location> locationList;
 
     public Day(){
 
@@ -32,9 +33,9 @@ public class Day {
         this.date = date;
     }
 
-    public Day(Date date, Set<Location> locationSet) {
+    public Day(Date date, List<Location> locationList) {
         this.date = date;
-        this.locationSet = locationSet;
+        this.locationList = locationList;
     }
 
     /**********************
@@ -58,12 +59,12 @@ public class Day {
         this.date = date;
     }
 
-    public Set<Location> getLocationSet() {
-        return locationSet;
+    public List<Location> getLocationList() {
+        return locationList;
     }
 
-    public void setLocationSet(Set<Location> locationSet) {
-        this.locationSet = locationSet;
+    public void setLocationList(List<Location> locationList) {
+        this.locationList = locationList;
     }
 
 
@@ -81,7 +82,7 @@ public class Day {
 
         Location location;
 
-        for(Iterator<Location> iterator = this.locationSet.iterator(); iterator.hasNext(); ){
+        for(Iterator<Location> iterator = this.locationList.iterator(); iterator.hasNext(); ){
             location = iterator.next();
             if(locationId == location.getId()){
                 return location;
@@ -102,7 +103,7 @@ public class Day {
         return "Day{" +
                        "id=" + id +
                        ", date=" + date +
-                       ", locationSet=" + locationSet +
+                       ", locationList=" + locationList +
                        '}';
     }
 

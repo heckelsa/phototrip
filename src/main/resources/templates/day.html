@@ -31,7 +31,7 @@
 <h1 th:text="${day.formattedDate}"></h1>
 
 <ul id="sortable">
-  <th:block th:each="location : ${day.locationSet}">
+  <th:block th:each="location : ${day.locationList}">
     <li class="ui-state-default">
       <div style="width:100%">
         <div style="width:80%">
