@@ -2,6 +2,7 @@ package com.travel.photoplanner.service;
 
 
 import com.travel.photoplanner.entity.Location;
+import com.travel.photoplanner.helper.Constants;
 import com.travel.photoplanner.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -65,7 +66,7 @@ public class LocationService {
      * @param sortOrder
      */
     public void sortLocation(String sortOrder){
-        String[] orderList = sortOrder.replaceFirst("item\\[\\]=", "").split("(?:\\&)?item\\[\\]=");
+        String[] orderList = sortOrder.replaceFirst(Constants.REGEX_ITEM_FIRST, "").split(Constants.REGEX_ITEM);
 
         List<Location> locationListNew = new LinkedList<>();
 
