@@ -4,6 +4,7 @@ import com.travel.photoplanner.entity.Day;
 import com.travel.photoplanner.entity.Location;
 import com.travel.photoplanner.service.DayService;
 import com.travel.photoplanner.service.TripService;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +40,12 @@ public class DayController {
                                               @RequestParam(value = "newDate") String newDate,
                                               ModelAndView modelAndView) throws ParseException {
 
+
+
         Day day = dayService.findDayById(id);
         Location location = day.getLocationById(locationId);
         dayService.removeLocationFromDay(day, location);
-        Day newDay = dayService.addLocationToDay(newDate, location);
+        Day newDay = dayService.addLocationToDay(StringEscapeUtils.escapeHtml(newDate), location);
 
         modelAndView.addObject("day", newDay);
         modelAndView.setViewName("day");

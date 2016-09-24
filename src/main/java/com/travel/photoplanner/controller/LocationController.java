@@ -6,6 +6,7 @@ import com.travel.photoplanner.entity.Trip;
 import com.travel.photoplanner.service.DayService;
 import com.travel.photoplanner.service.LocationService;
 import com.travel.photoplanner.service.TripService;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +54,7 @@ public class LocationController {
     public String updateLocationOrder(@RequestParam(value = "order") String order){
 
         /* TODO: WIP */
-        locationService.sortLocation(order);
+        locationService.sortLocation(StringEscapeUtils.escapeHtml(order));
 
         return "detail";
     }
@@ -69,6 +70,12 @@ public class LocationController {
                                        @RequestParam(value = "picture", required = false) String picture,
                                        @RequestParam(value = "date", required = false) String date,
                                        ModelAndView modelAndView) throws ParseException {
+
+        name        = StringEscapeUtils.escapeHtml(name);
+        description = StringEscapeUtils.escapeHtml(description);
+        coordinates = StringEscapeUtils.escapeHtml(coordinates);
+        picture     = StringEscapeUtils.escapeHtml(picture);
+        date        = StringEscapeUtils.escapeHtml(date);
 
         Trip trip;
 

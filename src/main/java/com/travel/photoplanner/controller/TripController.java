@@ -1,6 +1,7 @@
 package com.travel.photoplanner.controller;
 
 import com.travel.photoplanner.service.TripService;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,10 @@ public class TripController {
     public String newTrip(@RequestParam(value = "country") String country,
                           @RequestParam(value = "startdate") String startDate,
                           @RequestParam(value = "enddate") String endDate) throws ParseException {
+
+        country     = StringEscapeUtils.escapeHtml(country);
+        startDate   = StringEscapeUtils.escapeHtml(startDate);
+        endDate     = StringEscapeUtils.escapeHtml(endDate);
 
         tripService.saveNewTrip(country, startDate, endDate);
 
