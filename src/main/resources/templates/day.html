@@ -16,10 +16,23 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
   <script>
-  $( function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  } );
+  $(document).ready(function () {
+      $('#sortable').sortable({
+          axis: 'y',
+          stop: function (event, ui) {
+            var data = $(this).sortable('serialize');
+            $('span').text(data);
+              $.ajax({
+                  data: {
+                    "order" : data
+                  },
+                  type: 'POST',
+                  url: '/updateLocationOrder'
+              });
+    }
+      });
+  });
+
   </script>
 </head>
 
@@ -32,11 +45,11 @@
 
 <ul id="sortable">
   <th:block th:each="location : ${day.locationList}">
-    <li class="ui-state-default">
+    <li class="ui-state-default" th:id="'item-' + ${location.id}">
       <div style="width:100%">
         <div style="width:80%">
           <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
-            <span th:text="'Day:' + ${location.name}" />
+            <th:block th:text="${location.name}" />
           </a>
         </div>
         <div style="width:20%; float: right;">
@@ -46,6 +59,8 @@
     </li>
   </th:block>
 </ul>
+
+Query: <span></span>
 
 
 <div>

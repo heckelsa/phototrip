@@ -6,6 +6,9 @@ import com.travel.photoplanner.repository.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Component
 public class LocationService {
 
@@ -34,6 +37,16 @@ public class LocationService {
         return location;
     }
 
+    /**
+     *
+     * @param locationId
+     * @param name
+     * @param description
+     * @param coordinates
+     * @param priority
+     * @param picture
+     * @return
+     */
     public Location updateLocation(int locationId, String name, String description, String coordinates,
                                    int priority, String picture){
         Location location = findLocationById(locationId);
@@ -45,6 +58,24 @@ public class LocationService {
 
         location = saveLocation(location);
         return location;
+    }
+
+    /**
+     *
+     * @param sortOrder
+     */
+    public void sortLocation(String sortOrder){
+        String[] orderList = sortOrder.replaceFirst("item\\[\\]=", "").split("(?:\\&)?item\\[\\]=");
+
+        List<Location> locationListNew = new LinkedList<>();
+
+        for(int i=0; i < orderList.length; i++){
+            int listId = Integer.valueOf(orderList[i]);
+            Location location = findLocationById(listId);
+            locationListNew.add(location);
+        }
+
+       /* TODO: Add some sorting Mechanism so that the user is able to sort the location. */
     }
 
 }
