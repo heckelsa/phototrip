@@ -31,9 +31,16 @@
 <ul id="sortable">
   <th:block th:each="location : ${day.locationSet}">
     <li class="ui-state-default">
-      <a th:href="'location?id=' + ${location.id}">
-        <span th:text="'Day:' + ${location.name}" />
-      </a>
+      <div style="width:100%">
+        <div style="width:80%">
+          <a th:href="'location?id=' + ${location.id}">
+            <span th:text="'Day:' + ${location.name}" />
+          </a>
+        </div>
+        <div style="width:20%">
+          <a th:href="'editDay?id=' + ${day.id} + '&amp;location=' + ${location.id}">Edit</a>
+        </div>
+      </div>
     </li>
   </th:block>
 </ul>

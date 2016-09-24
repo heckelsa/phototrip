@@ -6,23 +6,22 @@
 </head>
 
 <!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
 <body>
 
 <h1 th:text="'Edit' + ${day.formattedDate}"></h1>
 
-<form th:action="'editDay?id=' + ${day.id}" method="POST">
+<form th:action="'saveDay?id=' + ${day.id} + '&amp;location=' + ${location.id}" method="POST">
 
-  <div th:each="location : ${day.locationSet}">
-    <div class="inputField">
-      <div class="inputLabel" th:text="${location.name}"></div>
-      <div class="inputValue">
-        <input type="date" th:name="'date_' + ${location.id}" name="date" th:placeholder="${day.getFormattedDate()}" />
-      </div>
+  <div class="inputField">
+    <div class="inputLabel" th:text="${location.name}"></div>
+    <div class="inputValue">
+      <input type="date" name="newDate" th:placeholder="${day.getFormattedDate()}" />
     </div>
   </div>
 
   <div class="buttonField">
-    <div><button type="submit" value="submit" name="submit">New Location</button> </div>
+    <div><button type="submit" value="submit" name="submit">Save</button> </div>
   </div>
 
 </form>

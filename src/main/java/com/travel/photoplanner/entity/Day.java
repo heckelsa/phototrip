@@ -5,6 +5,7 @@ import com.travel.photoplanner.helper.PhototripHelper;
 import javax.persistence.*;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Set;
 
 @Entity
@@ -61,10 +62,36 @@ public class Day {
         this.locationSet = locationSet;
     }
 
+
+    /**********************
+     * METHODS
+     *********************/
+
+
     public String getFormattedDate() throws ParseException {
         String formattedDate = PhototripHelper.getFormattedDate(this.date);
         return formattedDate;
     }
+
+    public Location getLocationById(int locationId){
+
+        Location location;
+
+        for(Iterator<Location> iterator = this.locationSet.iterator(); iterator.hasNext(); ){
+            location = iterator.next();
+            if(locationId == location.getId()){
+                return location;
+            }
+        }
+
+        return null;
+    }
+
+
+    /****************************
+     * TO STRING / HASH / EQUALS
+     ****************************/
+
 
     @Override
     public String toString() {
@@ -74,5 +101,7 @@ public class Day {
                        ", locationSet=" + locationSet +
                        '}';
     }
+
+
 }
 
