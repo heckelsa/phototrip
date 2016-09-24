@@ -70,6 +70,7 @@ public class LocationController {
             trip = tripService.findTripById(tripId);
 
         }else{
+            // Add new Location
             Location location = locationService.saveNewLocation(name, description, coordinates, priority, picture);
             Day day = dayService.addLocationToDay(date, location);
             trip = tripService.addDayToTrip(tripId, day);
