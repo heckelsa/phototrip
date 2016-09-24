@@ -23,7 +23,9 @@
   </script>
 </head>
 
+<!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
 <!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
 <body>
 
 <h1 th:text="${day.formattedDate}"></h1>
@@ -44,6 +46,63 @@
     </li>
   </th:block>
 </ul>
+
+
+<div>
+
+  <h2>Add new Location</h2>
+
+  <form th:action="'createLocation?id=' + ${trip.id}" method="POST">
+
+    <div class="inputField">
+      <div class="inputLabel">Datum:</div>
+      <div class="inputValue">
+        <input type="date" name="date" th:value="${day.formattedDate}" />
+      </div>
+    </div>
+
+
+    <div class="inputField">
+      <div class="inputLabel">Location Name:</div>
+      <div class="inputValue">
+        <input type="text" name="name" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Description:</div>
+      <div class="inputValue">
+        <input type="text" name="description" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Coordinates:</div>
+      <div class="inputValue">
+        <input type="text" name="coordinates" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Priority:</div>
+      <div class="inputValue">
+        <input type="text" name="priority" />
+      </div>
+    </div>
+
+    <div class="inputField">
+      <div class="inputLabel">Priority:</div>
+      <div class="inputValue">
+        <input name="Datei" type="file" size="50" accept="image/jpeg" />
+      </div>
+    </div>
+
+    <div class="buttonField">
+      <div><button type="submit" value="submit" name="submit">New Location</button> </div>
+    </div>
+
+  </form>
+</div>
 
 </body>
 </html>
