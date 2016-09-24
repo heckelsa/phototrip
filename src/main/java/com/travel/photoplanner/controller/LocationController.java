@@ -52,7 +52,7 @@ public class LocationController {
 
     @RequestMapping("/createLocation")
     public ModelAndView createLocation(@RequestParam(value = "trip") int tripId,
-                                       @RequestParam(value = "location", required = false) int locationId,
+                                       @RequestParam(value = "location", required = false, defaultValue = "0") int locationId,
                                        @RequestParam(value = "name") String name,
                                        @RequestParam(value = "description") String description,
                                        @RequestParam(value = "coordinates") String coordinates,
