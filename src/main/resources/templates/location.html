@@ -5,6 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 
+<!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
 <!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
 <body>
 
@@ -18,6 +19,10 @@
   <div th:text="${location.coordinates}" />
   <div th:text="${location.priority}" />
 
+</div>
+
+<div>
+  <a th:href="'editLocation?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">Edit Location</a>
 </div>
 
 </body>

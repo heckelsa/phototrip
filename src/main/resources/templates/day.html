@@ -35,7 +35,7 @@
     <li class="ui-state-default">
       <div style="width:100%">
         <div style="width:80%">
-          <a th:href="'location?id=' + ${location.id}">
+          <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
             <span th:text="'Day:' + ${location.name}" />
           </a>
         </div>
@@ -52,7 +52,7 @@
 
   <h2>Add new Location</h2>
 
-  <form th:action="'createLocation?id=' + ${trip.id}" method="POST">
+  <form th:action="'createLocation?trip=' + ${trip.id}" method="POST">
 
     <div class="inputField">
       <div class="inputLabel">Datum:</div>
@@ -91,7 +91,7 @@
     </div>
 
     <div class="inputField">
-      <div class="inputLabel">Priority:</div>
+      <div class="inputLabel">Picture:</div>
       <div class="inputValue">
         <input name="Datei" type="file" size="50" accept="image/jpeg" />
       </div>
