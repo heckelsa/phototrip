@@ -1,0 +1,19 @@
+*****************************************
+*** P H O T O T R I P   P L A N N E R ***
+*****************************************
+
+What do you think this Planner is doing? You can plan your phototrip of course! What are you waiting for?
+
+======================================
+
+How to start this program:
+
+$ mvn clean install
+$ mvn spring-boot:run
+
+=======================================
+
+Take a look at the Phototrip Planner:
+
+http://localhost:8282/
+
