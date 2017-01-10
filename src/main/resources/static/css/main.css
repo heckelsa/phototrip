@@ -1,0 +1,67 @@
+/************************
+ * GENERAL
+ ************************/
+
+body {
+  margin: 0;
+}
+
+.main {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+
+/************************
+ * HEADER
+ ************************/
+
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  background-color: #B4CFA8;
+}
+
+.header-top {
+  width: 80%;
+  height: 100px;
+  margin: 0px auto;
+}
+
+.header h1 {
+  color: #313330;
+  font-family: Kedage;
+}
+
+
+/************************
+ * CONTENT
+ ************************/
+
+.content {
+  width: 80%;
+  margin: 140px auto;
+}
+
+
+/************************
+ * FOOTER
+ ************************/
+
+.footer {
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  background-color: #B4CFA8;
+}
+
+.footer-bottom {
+  width: 80%;
+  height: 40px;
+  margin: 0px auto;
+  padding-top: 0.5%;
+}
+

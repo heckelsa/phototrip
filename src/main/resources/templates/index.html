@@ -6,18 +6,37 @@
 <!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
 
 <body>
-    <div><h1>Phototrip Planner</h1></div>
 
-    <div><h2>Overview</h2></div>
-
-  <div th:each="trip : ${trips}">
-      <a th:href="'detail?id=' + ${trip.id}">
-          <b><span th:text="${trip.country}" ></span></b>
-          <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
-      </a>
+  <!--HEADER-->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>Phototrip Planner</h1>
+      </div>
+    </div>
   </div>
 
-  <a href="newTrip">New Trip</a>
+  <!--CONTENT-->
+  <div class="content">
+    <div><h2>Overview</h2></div>
+
+      <div th:each="trip : ${trips}">
+          <a th:href="'detail?id=' + ${trip.id}">
+              <b><span th:text="${trip.country}" ></span></b>
+              <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
+          </a>
+      </div>
+
+      <a href="newTrip">New Trip</a>
+  </div>
+
+  <!--FOOTER-->
+  <div class="footer">
+    <div class="footer-bottom">
+      (c) Phototrip Planner 2016
+    </div>
+  </div>
+
 
 </body>
 </html>
