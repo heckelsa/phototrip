@@ -10,8 +10,13 @@
   <!--HEADER-->
   <div class="header">
     <div class="header-top">
-      <div>
-        <h1>Phototrip Planner</h1>
+      <div class="header-navigation">
+        <ul>
+          <li><a href="/">Startseite</a></li>
+          <li><a href="/newTrip">Neuer Phototrip</a></li>
+        </ul>
+      </div>
+      <div class="header-image">
       </div>
     </div>
   </div>
@@ -20,10 +25,10 @@
   <div class="content">
     <div><h2>Overview</h2></div>
 
-      <div th:each="trip : ${trips}">
+      <div th:class="trip-overview" th:each="trip : ${trips}">
           <a th:href="'detail?id=' + ${trip.id}">
-              <b><span th:text="${trip.country}" ></span></b>
-              <span th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
+              <span th:class="trip-name" th:text="${trip.country}" ></span>
+              <span th:class="trip-date" th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
           </a>
       </div>
 

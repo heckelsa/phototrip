@@ -2,8 +2,17 @@
  * GENERAL
  ************************/
 
+* {
+  font-family: "Bitstream Vera Sans", sans-serif;
+}
+
 body {
   margin: 0;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
 }
 
 .main {
@@ -21,19 +30,33 @@ body {
 .header {
   position: fixed;
   width: 100%;
-  top: 0px;
-  background-color: #B4CFA8;
+  top: 0;
 }
 
 .header-top {
   width: 80%;
-  height: 100px;
-  margin: 0px auto;
+  max-width: 980px;
+  height: 170px;
+  margin: 0 auto;
+  background-image: url("/img/norway_small.jpg");
 }
 
 .header h1 {
   color: #313330;
-  font-family: Kedage;
+}
+
+/************************
+ * NAVIGATION
+ ************************/
+
+.header-navigation ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-navigation ul li {
+  float: left;
 }
 
 
@@ -41,16 +64,33 @@ body {
  * CONTENT
  ************************/
 
+
+
 .content {
   width: 80%;
-  margin: 140px auto;
+  max-width: 980px;
+  margin: 200px auto;
+}
+
+.trip-overview {
+  float: left;
+  margin: 2%;
+  width: 20%;
+  height: 150px;
+  background-color: #d3d3d3;
+}
+
+.trip-name {
+  font-weight: bold;
+  font-size: larger;
+  width: 100%;
 }
 
 
 /************************
  * FOOTER
  ************************/
-
+                                                           l
 .footer {
   width: 100%;
   bottom: 0;
@@ -61,7 +101,7 @@ body {
 .footer-bottom {
   width: 80%;
   height: 40px;
-  margin: 0px auto;
+  margin: 0 auto;
   padding-top: 0.5%;
 }
 
