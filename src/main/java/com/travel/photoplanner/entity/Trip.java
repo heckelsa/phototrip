@@ -1,5 +1,6 @@
 package com.travel.photoplanner.entity;
 
+import com.travel.photoplanner.helper.Constants;
 import com.travel.photoplanner.helper.DateHelper;
 
 import javax.persistence.*;
@@ -97,12 +98,12 @@ public class Trip {
 
 
     public String getFormattedStartDate() throws ParseException {
-        String formattedDate = DateHelper.getFormattedDate(this.startDate);
+        String formattedDate = DateHelper.getFormattedDate(this.startDate, Constants.DATE_FORMAT_RENDER);
         return formattedDate;
     }
 
     public String getFormattedEndDate() throws ParseException {
-        String formattedDate = DateHelper.getFormattedDate(this.endDate);
+        String formattedDate = DateHelper.getFormattedDate(this.endDate, Constants.DATE_FORMAT_RENDER);
         return formattedDate;
     }
 

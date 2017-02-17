@@ -51,8 +51,15 @@ public class LocationController {
     }
 
     @RequestMapping("/new-location")
-    public String newTrip() {
-        return "new/new-location";
+    public ModelAndView day(@RequestParam(value = "trip") int tripId,
+                            @RequestParam(value = "id") int id,
+                            ModelAndView modelAndView) {
+
+        modelAndView.addObject("trip", tripService.findTripById(tripId));
+        modelAndView.addObject("day", dayService.findDayById(id));
+        modelAndView.setViewName("new/new-location");
+
+        return modelAndView;
     }
 
     @RequestMapping("/update-location-order")

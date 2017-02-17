@@ -26,8 +26,8 @@ public final class DateHelper {
      * @return
      * @throws ParseException
      */
-    public static String getFormattedDate(Date date) throws ParseException {
-        String formattedDate = new SimpleDateFormat(Constants.DATE_FORMAT_RENDER).format(date);
+    public static String getFormattedDate(Date date, String format) throws ParseException {
+        String formattedDate = new SimpleDateFormat(format).format(date);
         return formattedDate;
     }
 

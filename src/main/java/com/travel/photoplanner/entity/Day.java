@@ -1,5 +1,6 @@
 package com.travel.photoplanner.entity;
 
+import com.travel.photoplanner.helper.Constants;
 import com.travel.photoplanner.helper.DateHelper;
 
 import javax.persistence.*;
@@ -17,6 +18,9 @@ public class Day {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "Id")
     private int id;
+
+    @Column(name = "Name")
+    private String name;
 
     @Column(name = "Date")
     private Date date;
@@ -51,6 +55,14 @@ public class Day {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -74,9 +86,20 @@ public class Day {
 
 
     public String getFormattedDate() throws ParseException {
-        String formattedDate = DateHelper.getFormattedDate(this.date);
+        String formattedDate = DateHelper.getFormattedDate(this.date, Constants.DATE_FORMAT_RENDER);
         return formattedDate;
     }
+
+    public String getFormattedDateWeekDays() throws ParseException {
+        String formattedDate = DateHelper.getFormattedDate(this.date, Constants.DATE_FORMAT_RENDER_WEEK_DAY);
+        return formattedDate;
+    }
+
+    public String getFormattedDateInputField() throws ParseException {
+        String formattedDate = DateHelper.getFormattedDate(this.date, Constants.DATE_FORMAT_INPUT_FIELD);
+        return formattedDate;
+    }
+
 
     public Location getLocationById(int locationId){
 
@@ -102,6 +125,7 @@ public class Day {
     public String toString() {
         return "Day{" +
                        "id=" + id +
+                       ", name=" + name +
                        ", date=" + date +
                        ", locationList=" + locationList +
                        '}';

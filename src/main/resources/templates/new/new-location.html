@@ -30,13 +30,11 @@
         </div>
 
         <div class="content-form">
-            <!--<form th:action="'create-location?trip=' + ${trip.id}" method="POST">-->
-            <form action="create-location" method="POST">
+            <form th:action="'create-location?trip=' + ${trip.id}" method="POST">
                 <div class="input-field">
                     <div class="input-label">Datum:</div>
                     <div class="input-value">
-                        <!-- <input type="date" name="date" th:value="${day.formattedDate}" /> -->
-                        <input type="date" name="date" />
+                        <input type="date" name="date" th:value="${day.formattedDateInputField}" />
                     </div>
                 </div>
 
