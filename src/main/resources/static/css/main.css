@@ -194,3 +194,26 @@ input {
   padding: 1.5%;
   border-style: none;
 }
+
+.day-list {
+  width: 50%;
+  float: left;
+  padding: 3%;
+}
+
+.day-list-item {
+  float: left;
+  margin: 1%;
+  width: 400px;
+}
+.day-list-item a {
+  float: left;
+  padding: 5%;
+  width: 400px;
+  background-color: #e7e7e7;
+}
+
+.day-list-item a:hover {
+  background-color: #6d8e59;
+  color: #FFFFFF;
+}
