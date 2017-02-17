@@ -29,22 +29,25 @@
   </div>
 
 
-  <ul id="sortable">
-    <th:block th:each="location : ${day.locationList}">
-      <li class="ui-state-default" th:id="'item-' + ${location.id}">
-        <div style="width:100%">
-          <div style="width:80%">
-            <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
-              <th:block th:text="${location.name}" />
-            </a>
+  <div class="content-form">
+    <ul id="sortable">
+      <th:block th:each="location : ${day.locationList}">
+        <li class="ui-state-default" th:id="'item-' + ${location.id}">
+          <div style="width:100%">
+            <div style="width:80%">
+              <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
+                <th:block th:text="${location.name}" />
+              </a>
+            </div>
+            <div style="width:20%; float: right;">
+              <a th:href="'edit-day?id=' + ${day.id} + '&amp;location=' + ${location.id}">Edit</a>
+            </div>
           </div>
-          <div style="width:20%; float: right;">
-            <a th:href="'edit-day?id=' + ${day.id} + '&amp;location=' + ${location.id}">Edit</a>
-          </div>
-        </div>
-      </li>
-    </th:block>
-  </ul>
+        </li>
+      </th:block>
+    </ul>
+  </div>
+
 
 
   <a th:class="button" th:href="'/new-location?trip=' + ${trip.id} + '&amp;id=' + ${day.id}">
