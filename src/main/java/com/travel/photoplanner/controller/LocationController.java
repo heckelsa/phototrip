@@ -50,6 +50,11 @@ public class LocationController {
         return modelAndView;
     }
 
+    @RequestMapping("/new-location")
+    public String newTrip() {
+        return "new/new-location";
+    }
+
     @RequestMapping("/update-location-order")
     public String updateLocationOrder(@RequestParam(value = "order") String order){
 
@@ -60,7 +65,7 @@ public class LocationController {
     }
 
 
-    @RequestMapping("/createLocation")
+    @RequestMapping("/create-location")
     public ModelAndView createLocation(@RequestParam(value = "trip") int tripId,
                                        @RequestParam(value = "location", required = false, defaultValue = "0") int locationId,
                                        @RequestParam(value = "name") String name,

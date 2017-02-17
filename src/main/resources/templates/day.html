@@ -1,122 +1,110 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
   <title th:text="${day.formattedDate}"></title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <head lang="de" th:replace="fragments/head :: head"></head>
 
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-
-  <style>
-  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
-  #sortable li span { position: absolute; margin-left: -1.3em; }
-  </style>
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-  <script>
-  $(document).ready(function () {
-      $('#sortable').sortable({
-          axis: 'y',
-          stop: function (event, ui) {
-            var data = $(this).sortable('serialize');
-            $('span').text(data);
-              $.ajax({
-                  data: {
-                    "order" : data
-                  },
-                  type: 'POST',
-                  url: '/update-location-order'
-              });
-    }
-      });
-  });
-
-  </script>
-</head>
-
+<body>
 <!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
 <!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
 <!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
-<body>
 
-<h1 th:text="${day.formattedDate}"></h1>
+<!--HEADER-->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo"></div>
+  </div>
+</div>
+<div class="content-separator"></div>
 
-<ul id="sortable">
-  <th:block th:each="location : ${day.locationList}">
-    <li class="ui-state-default" th:id="'item-' + ${location.id}">
-      <div style="width:100%">
-        <div style="width:80%">
-          <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
-            <th:block th:text="${location.name}" />
-          </a>
+<!--CONTENT-->
+<div class="content">
+
+  <div class="content-header">
+    <div class="content-header-left">
+      <h2 th:text="${day.formattedDate}"></h2>
+    </div>
+    <div class="content-header-right">
+      <a href="/" class="button">Übersicht</a>
+      <a href="/new-location" class="button">Neue Location</a>
+    </div>
+  </div>
+
+
+  <ul id="sortable">
+    <th:block th:each="location : ${day.locationList}">
+      <li class="ui-state-default" th:id="'item-' + ${location.id}">
+        <div style="width:100%">
+          <div style="width:80%">
+            <a th:href="'location?trip=' + ${trip.id} + '&amp;id=' + ${location.id}">
+              <th:block th:text="${location.name}" />
+            </a>
+          </div>
+          <div style="width:20%; float: right;">
+            <a th:href="'edit-day?id=' + ${day.id} + '&amp;location=' + ${location.id}">Edit</a>
+          </div>
         </div>
-        <div style="width:20%; float: right;">
-          <a th:href="'edit-day?id=' + ${day.id} + '&amp;location=' + ${location.id}">Edit</a>
+      </li>
+    </th:block>
+  </ul>
+
+  Query: <span></span>
+
+
+  <div>
+
+    <h2>Add new Location</h2>
+
+    <form th:action="'create-location?trip=' + ${trip.id}" method="POST">
+
+      <div class="inputField">
+        <div class="inputLabel">Datum:</div>
+        <div class="inputValue">
+          <input type="date" name="date" th:value="${day.formattedDate}" />
         </div>
       </div>
-    </li>
-  </th:block>
-</ul>
-
-Query: <span></span>
 
 
-<div>
-
-  <h2>Add new Location</h2>
-
-  <form th:action="'createLocation?trip=' + ${trip.id}" method="POST">
-
-    <div class="inputField">
-      <div class="inputLabel">Datum:</div>
-      <div class="inputValue">
-        <input type="date" name="date" th:value="${day.formattedDate}" />
+      <div class="inputField">
+        <div class="inputLabel">Location Name:</div>
+        <div class="inputValue">
+          <input type="text" name="name" />
+        </div>
       </div>
-    </div>
 
-
-    <div class="inputField">
-      <div class="inputLabel">Location Name:</div>
-      <div class="inputValue">
-        <input type="text" name="name" />
+      <div class="inputField">
+        <div class="inputLabel">Description:</div>
+        <div class="inputValue">
+          <input type="text" name="description" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Description:</div>
-      <div class="inputValue">
-        <input type="text" name="description" />
+      <div class="inputField">
+        <div class="inputLabel">Coordinates:</div>
+        <div class="inputValue">
+          <input type="text" name="coordinates" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Coordinates:</div>
-      <div class="inputValue">
-        <input type="text" name="coordinates" />
+      <div class="inputField">
+        <div class="inputLabel">Priority:</div>
+        <div class="inputValue">
+          <input type="text" name="priority" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Priority:</div>
-      <div class="inputValue">
-        <input type="text" name="priority" />
+      <div class="inputField">
+        <div class="inputLabel">Picture:</div>
+        <div class="inputValue">
+          <input name="Datei" type="file" size="50" accept="image/jpeg" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Picture:</div>
-      <div class="inputValue">
-        <input name="Datei" type="file" size="50" accept="image/jpeg" />
+      <div class="buttonField">
+        <div><button type="submit" value="submit" name="submit">New Location</button> </div>
       </div>
-    </div>
 
-    <div class="buttonField">
-      <div><button type="submit" value="submit" name="submit">New Location</button> </div>
-    </div>
-
-  </form>
+    </form>
+  </div>
 </div>
 
 </body>

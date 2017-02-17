@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="de" th:replace="fragments/head :: head"></head>
+
+<body>
+
+<!--/*@thymesVar id="trip" type="com.travel.photoplanner.entity.Trip"*/-->
+<!--/*@thymesVar id="day" type="com.travel.photoplanner.entity.Day"*/-->
+<!--/*@thymesVar id="location" type="com.travel.photoplanner.entity.Location"*/-->
+
+<div>
+
+    <!--HEADER-->
+    <div class="header">
+        <div class="header-top">
+            <div class="header-logo"></div>
+        </div>
+    </div>
+    <div class="content-separator"></div>
+
+    <!--CONTENT-->
+    <div class="content">
+        <div class="content-header">
+            <div class="content-header-left">
+                <h2>Neue Location hinzufügen</h2>
+            </div>
+            <div class="content-header-right">
+                <a href="/" class="button">Übersicht</a>
+            </div>
+        </div>
+
+        <div class="content-form">
+            <!--<form th:action="'create-location?trip=' + ${trip.id}" method="POST">-->
+            <form action="create-location" method="POST">
+                <div class="input-field">
+                    <div class="input-label">Datum:</div>
+                    <div class="input-value">
+                        <!-- <input type="date" name="date" th:value="${day.formattedDate}" /> -->
+                        <input type="date" name="date" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <div class="input-label">Location Name:</div>
+                    <div class="input-value">
+                        <input type="text" name="name" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <div class="input-label">Description:</div>
+                    <div class="input-value">
+                        <input class="input-extra-long" type="text" name="description" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <div class="input-label">Coordinates:</div>
+                    <div class="input-value">
+                        <input type="text" name="coordinates" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <div class="input-label">Priority:</div>
+                    <div class="input-value">
+                        <input type="text" name="priority" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <div class="input-label">Picture:</div>
+                    <div class="input-value">
+                        <input name="Datei" type="file" size="50" accept="image/jpeg" />
+                    </div>
+                </div>
+
+                <div class="input-field">
+                    <button class="button" type="submit" value="submit" name="submit">New Location</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

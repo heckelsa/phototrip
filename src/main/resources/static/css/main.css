@@ -190,6 +190,10 @@ input {
   width: 200px;
 }
 
+input.input-extra-long {
+  width: 400px;
+}
+
 .content-form button.button {
   padding: 1.5%;
   border-style: none;

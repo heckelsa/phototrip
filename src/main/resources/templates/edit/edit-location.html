@@ -11,7 +11,7 @@
 
 <h1 th:text="'Edit' + ${location.name}"></h1>
 
-<form th:action="'createLocation?trip=' + ${trip.id} + '&amp;location=' + ${location.id}" method="POST">
+<form th:action="'create-location?trip=' + ${trip.id} + '&amp;location=' + ${location.id}" method="POST">
 
   <div class="inputField">
     <div class="inputLabel">Location Name:</div>
