@@ -7,41 +7,48 @@
 
 <body>
 
-  <!--HEADER-->
-  <div class="header">
-    <div class="header-top">
-      <div class="header-navigation">
-        <ul>
-          <li><a href="/">Startseite</a></li>
-          <li><a href="/newTrip">Neuer Phototrip</a></li>
-        </ul>
-      </div>
-      <div class="header-image">
-      </div>
+<!--HEADER-->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo"></div>
+  </div>
+</div>
+<div class="image-teaser"></div>
+
+<!--CONTENT-->
+<div class="content">
+
+  <div class="content-header">
+    <div class="content-header-left">
+      <h2>Phototrips in Planung</h2>
+    </div>
+    <div class="content-header-right">
+      <a href="newTrip" class="button">Neuer Phototrip</a>
     </div>
   </div>
 
-  <!--CONTENT-->
-  <div class="content">
-    <div><h2>Overview</h2></div>
-
-      <div th:class="trip-overview" th:each="trip : ${trips}">
-          <a th:href="'detail?id=' + ${trip.id}">
-              <span th:class="trip-name" th:text="${trip.country}" ></span>
-              <span th:class="trip-date" th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
-          </a>
+  <div th:class="trip-overview" th:each="trip : ${trips}">
+    <div class="trip-details">
+      <div class="trip-name">
+        <a th:href="'detail?id=' + ${trip.id}"><span th:class="trip-name" th:text="${trip.country}" ></span></a>
       </div>
-
-      <a href="newTrip">New Trip</a>
-  </div>
-
-  <!--FOOTER-->
-  <div class="footer">
-    <div class="footer-bottom">
-      (c) Phototrip Planner 2016
+      <div class="trip-date">
+        <span th:class="trip-date" th:text="${trip.formattedStartDate} + ' - ' + ${trip.formattedEndDate}" />
+      </div>
+    </div>
+    <div class="trip-details-info">
+      <div class="trip-details-right">
+        aktualisiert am 16.02.2017
+      </div>
+      <div class="trip-details-right">
+        von Melina Niemann
+      </div>
+      <div class="trip-details-button">
+        <a href="editTrip" class="button">Bearbeiten</a>
+      </div>
     </div>
   </div>
-
+</div>
 
 </body>
 </html>

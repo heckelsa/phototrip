@@ -15,12 +15,22 @@ a {
   text-decoration: none;
 }
 
-.main {
-  width: 80%;
-  margin: 0 auto;
-  padding: 0;
+h2 {
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #6d8e59;
 }
 
+a.button {
+  text-decoration: none;
+  padding: 5%;
+  background-color: #6d8e59;
+  color: #FFFFFF;
+}
+
+a.button:hover {
+  background-color: #838e7d;
+}
 
 
 /************************
@@ -31,19 +41,32 @@ a {
   position: fixed;
   width: 100%;
   top: 0;
+  background-color: #FFFFFF;
 }
 
 .header-top {
   width: 80%;
   max-width: 980px;
-  height: 170px;
+  height: 122px;
   margin: 0 auto;
-  background-image: url("/img/norway_small.jpg");
 }
 
-.header h1 {
-  color: #313330;
+.header-logo {
+  width: 282px;
+  height: 122px;
+  margin: 0 auto;
+  background-image: url("/img/logo.png");
 }
+
+.image-teaser {
+  width: 80%;
+  max-width: 980px;
+  height: 379px;
+  margin: 0 auto;
+  margin-top: 122px;
+  background-image: url("/img/norway.jpg");
+}
+
 
 /************************
  * NAVIGATION
@@ -64,44 +87,68 @@ a {
  * CONTENT
  ************************/
 
-
-
 .content {
-  width: 80%;
-  max-width: 980px;
-  margin: 200px auto;
+  width: 75%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.content-header {
+  width: 94%;
+  float: left;
+  padding: 3%;
+}
+
+.content-header-left {
+  width: 60%;
+  float: left;
+}
+
+.content-header-right {
+  float: right;
+  width: 40%;
+  margin-top: 1.5%;
+}
+
+.content-header-right a.button {
+  float: right;
 }
 
 .trip-overview {
   float: left;
-  margin: 2%;
-  width: 20%;
-  height: 150px;
-  background-color: #d3d3d3;
+  margin: 3%;
+  padding: 5%;
+  width: 80%;
+  background-color: #e7e7e7;
+}
+
+.trip-details {
+  float: left;
+  width: 70%;
 }
 
 .trip-name {
   font-weight: bold;
   font-size: larger;
   width: 100%;
+  padding: 1%;
 }
 
-
-/************************
- * FOOTER
- ************************/
-                                                           l
-.footer {
-  width: 100%;
-  bottom: 0;
-  position: fixed;
-  background-color: #B4CFA8;
+.trip-date {
+  padding: 1%;
 }
 
-.footer-bottom {
-  width: 80%;
-  height: 40px;
-  margin: 0 auto;
-  padding-top: 0.5%;
+.trip-details-info {
+  float: left;
+  width: 30%;
 }
 
+.trip-details-right {
+  float: right;
+}
+
+.trip-details-button a.button {
+  margin-top: 10%;
+  padding: 5%;
+  float: right;
+}
