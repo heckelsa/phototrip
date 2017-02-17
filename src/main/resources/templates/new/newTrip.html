@@ -1,54 +1,56 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Create a new Trip</title>
-
-  <style type="text/css">
-    .inputField {
-      width: 100%;
-    }
-    .inputLabel {
-      width: 200px;
-    }
-    .headline {
-      width: 100%;
-    }
-  </style>
-</head>
+<head lang="de" th:replace="fragments/head :: head"></head>
 <body>
 
-<div>
-  <form action="createTrip" method="POST">
+<!--HEADER-->
+<div class="header">
+  <div class="header-top">
+    <div class="header-logo"></div>
+  </div>
+</div>
+<div class="content-separator"></div>
 
-    <div class="headline">
-      <h1>General Information</h1>
+<!--CONTENT-->
+<div class="content">
+  <div class="content-header">
+    <div class="content-header-left">
+      <h2>Neuer Phototrip</h2>
     </div>
+    <div class="content-header-right">
+      <a href="/" class="button">Übersicht</a>
+    </div>
+  </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Land:</div>
-      <div class="inputValue">
-        <input type="text" name="country" />
+  <div class="content-form">
+    <form action="createTrip" method="POST">
+
+      <div class="input-field">
+        <div class="input-label"><span class="form-label">Land</span></div>
+        <div class="input-value">
+          <input type="text" name="country" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Startdate:</div>
-      <div class="inputValue">
-        <input type="date" name="startdate" placeholder="02-11-2016" />
+      <div class="input-field">
+        <div class="input-label">Startdatum</div>
+        <div class="input-value">
+          <input type="date" name="startdate" placeholder="02-11-2016" />
+        </div>
       </div>
-    </div>
 
-    <div class="inputField">
-      <div class="inputLabel">Enddate:</div>
-      <div class="inputValue">
-        <input type="date" name="enddate" placeholder="15-11-2016" />
+      <div class="input-field">
+        <div class="input-label">Enddatum</div>
+        <div class="input-value">
+          <input type="date" name="enddate" placeholder="15-11-2016" />
+        </div>
       </div>
-    </div>
 
-    <button type="submit" value="Speichern" name="Submit">Speichern</button>
-
-  </form>
+      <div class="input-field">
+        <button class="button" type="submit" value="Speichern" name="Submit">Speichern</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 </body>
