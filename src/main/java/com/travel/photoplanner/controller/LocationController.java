@@ -40,17 +40,17 @@ public class LocationController {
         return modelAndView;
     }
 
-    @RequestMapping("/editLocation")
+    @RequestMapping("/edit-location")
     public ModelAndView editLocation(@RequestParam(value = "trip") int tripId,
                                      @RequestParam(value = "id") int id,
                                      ModelAndView modelAndView) {
         modelAndView.addObject("trip", tripService.findTripById(tripId));
         modelAndView.addObject("location", locationService.findLocationById(id));
-        modelAndView.setViewName("edit/editLocation");
+        modelAndView.setViewName("edit/edit-location");
         return modelAndView;
     }
 
-    @RequestMapping("/updateLocationOrder")
+    @RequestMapping("/update-location-order")
     public String updateLocationOrder(@RequestParam(value = "order") String order){
 
         /* TODO: WIP */

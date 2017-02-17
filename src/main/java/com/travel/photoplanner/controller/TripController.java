@@ -28,9 +28,9 @@ public class TripController {
     }
 
 
-    @RequestMapping("/newTrip")
+    @RequestMapping("/new-trip")
     public String newTrip() {
-        return "new/newTrip";
+        return "new/new-trip";
     }
 
 

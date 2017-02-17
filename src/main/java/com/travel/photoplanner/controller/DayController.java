@@ -53,7 +53,7 @@ public class DayController {
         return modelAndView;
     }
 
-    @RequestMapping("/editDay")
+    @RequestMapping("/edit-day")
     public ModelAndView editDay(@RequestParam(value = "id") int id,
                                 @RequestParam(value = "location") int locationId,
                                 ModelAndView modelAndView) {
@@ -66,7 +66,7 @@ public class DayController {
         }
 
         modelAndView.addObject("day", day);
-        modelAndView.setViewName("edit/editDay");
+        modelAndView.setViewName("edit/edit-day");
 
         return modelAndView;
     }
