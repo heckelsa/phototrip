@@ -34,7 +34,7 @@
   <div class="day-list">
     <div th:class="day-list-item" th:each="day : ${trip.dayList}">
       <a th:href="'day?trip=' + ${trip.id} + '&amp;id=' + ${day.id}">
-        <span th:text="'Day:' + ${day.formattedDate}" />
+        <span th:text="${day.formattedDate}" />
       </a>
       <div th:each="location : ${day.locationList}">
         <span class="ui-icon ui-icon-arrowthick-2-n-s"></span><span th:text="${location.name}" />
